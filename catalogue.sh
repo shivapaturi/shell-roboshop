@@ -59,7 +59,6 @@ VALIDATE $? "creating app directory"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOG_FILE
 VALIDATE $? "downloading the catalogue" 
 
-rm -rf /app/*
 cd /app 
 VALIDATE $? "Moving to the catalogue" 
 
@@ -87,5 +86,11 @@ VALIDATE $? "Copying mongodb repo"
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Installing mongodb server" 
 
-mongosh --host mongodb.daws84ss.site </app/db/master-data.js &>>$LOG_FILE
-VALIDATE $? "Loading data in to mongodb server" 
+STATUS=$(mongosh --host mongodb.daws84s.site --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+if [ $STATUS -lt 0 ]
+then
+    mongosh --host mongodb.daws84s.site </app/db/master-data.js &>>$LOG_FILE
+    VALIDATE $? "Loading data into MongoDB"
+else
+    echo -e "Data is already loaded ... $Y SKIPPING $N"
+fi
