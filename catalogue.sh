@@ -87,5 +87,5 @@ VALIDATE $? "Copying mongodb repo"
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Installing mongodb server" 
 
-mongosh --host mongodb84ss.site </app/db/master-data.js &>>$LOG_FILE
+mongosh --host mongodb.daws84ss.site </app/db/master-data.js &>>$LOG_FILE
 VALIDATE $? "Loading data in to mongodb server" 
