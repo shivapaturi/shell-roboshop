@@ -1,7 +1,7 @@
 #!/bin/bash
 
 AMI_ID="ami-09c813fb71547fc4f"
-SG_ID="sg-010eb25d82d15b248"
+SG_ID="sg-sg-010eb25d82d15b248"
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipping" "payment" "dispatch")
 ZONE_id="Z0002010ZLBCRXD0A652"
 DOMAIN_NAME="daws84ss.site"
