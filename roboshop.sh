@@ -6,6 +6,12 @@ INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" "user" "cart" "shipp
 ZONE_ID="Z0002010ZLBCRXD0A652" # replace with your ZONE ID
 DOMAIN_NAME="daws84ss.site" # replace with your domain
 
+if rpm -q $INSTANCES &> /dev/null; then
+    echo "$INSTANCES is already installed. Skipping installation."
+else
+    echo "Installing $INSTANCES..."
+    
+fi
 #for instance in ${INSTANCES[@]}
 for instance in $@
 do
