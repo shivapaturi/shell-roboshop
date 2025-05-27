@@ -64,9 +64,13 @@ cp $SCRIPT_DIR/payment.service /etc/systemd/system/payment.service &>>$LOG_FILE
 VALIDATE $? "Copying payment service"
 
 systemctl daemon-reload &>>$LOG_FILE
-systemctl enable user  &>>$LOG_FILE
-systemctl start user
-VALIDATE $? "Starting user"
+VALIDATE $? "Daemon Reload"
+
+systemctl enable shipping  &>>$LOG_FILE
+VALIDATE $? "Enabling Shipping"
+
+systemctl start payment &>>$LOG_FILE
+VALIDATE $? "Starting payment"
 
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))
