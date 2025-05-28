@@ -66,14 +66,11 @@ VALIDATE $? "Copying payment service"
 systemctl daemon-reload &>>$LOG_FILE
 VALIDATE $? "Daemon Reload"
 
-systemctl unmask payment &>>$LOG_FILE
-VALIDATE $? "Unmask payment"
-
-systemctl enable payment &>>$LOG_FILE
-VALIDATE $? "Enable payment"
-
 systemctl start payment &>>$LOG_FILE
 VALIDATE $? "Starting payment"
+
+systemctl enable payment &>>$LOG_FILE
+VALIDATE $? "Enabling payment"
 
 END_TIME=$(date +%s)
 TOTAL_TIME=$(( $END_TIME - $START_TIME ))
